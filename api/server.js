@@ -1,11 +1,11 @@
 const express = require("express");
-const CarsRouter = require("./cars/cars-router");
+const carsRouter = require("./cars/cars-router");
 
 const server = express();
 
 server.use(express.json());
 
-server.use("/api/cars", CarsRouter);
+server.use("/api/cars", carsRouter);
 
 server.use("*", (req, res, next) => {
     next({
@@ -15,7 +15,7 @@ server.use("*", (req, res, next) => {
 });
 
 server.use( (error, req, res, next) => {
-    res.status = error.status || 500,
+    res.status(error.status || 500)
     res.json({
         message: error.message || 'error in Cars router',
         stack: error.stack

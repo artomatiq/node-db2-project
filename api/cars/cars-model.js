@@ -7,7 +7,11 @@ const getAll = async () => {
 }
 
 const getById = async (id) => {
-  // DO YOUR MAGIC
+  const car = await db('cars')
+    .where('id', id)
+    .first()
+
+  return car
 }
 
 const create = async (car) => {
