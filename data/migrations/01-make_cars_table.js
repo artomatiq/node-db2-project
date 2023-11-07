@@ -1,10 +1,5 @@
-const { default: knex } = require("knex");
-@returns {Promise<void>}
-
-
-
 exports.up = function (knex) {
-  await knex.schema.createTable('dealer', table => {
+  return knex.schema.createTable('cars', table => {
     table.increments('id')
     table.string('vin', 17).notNullable().unique()
     table.string('make', 128).notNullable()
@@ -16,5 +11,5 @@ exports.up = function (knex) {
 };
 
 exports.down = async function (knex) {
-
+  return knex.schema.dropTableIfExists('cars')
 };
